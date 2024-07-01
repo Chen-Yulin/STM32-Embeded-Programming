@@ -104,8 +104,7 @@ int main(void) {
     /* USER CODE BEGIN 3 */
 
     Delay_ms(10);
-    // LCD_Display_String(0, 0, startStr2);
-    LCD_Display_Char(startStr2[1], 1, 0);
+    LCD_Display_String(0, 0, startStr2);
   }
   /* USER CODE END 3 */
 }

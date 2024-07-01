@@ -21,8 +21,6 @@ void LCD_Clear(void); // LCD清屏函数
 void LCD_Write_Command(uchar Com); // LCD 写命令函数
 void LCD_Write_Data(uchar dat);    // LCD 写数据函数
 
-uchar LCD_Read_State(void); // LCD 读状态函数
-
 void LCD_Set_Position(uchar x, uchar y); // LCD 写数据函数
 
 void LCD_Display_Char(uchar Char, uchar x, uchar y); // LCD显示一个字符函数

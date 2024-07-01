@@ -12,7 +12,10 @@
 #define LCD_IDLE 0x33
 #define LCD_2_LINE_4_BITS 0x28
 #define LCD_2_LINE_8_BITS 0x38
-#define LCD_DSP_CSR 0x0c
+// cursor enabled
+// #define LCD_DSP_CSR 0x0f
+// cursor dissabled
+#define LCD_DSP_CSR 0x0f
 #define LCD_CLR_DSP 0x01
 #define LCD_CSR_INC 0x06
 #define LCD_SFT_MOV 0x14
@@ -67,8 +70,7 @@ void LCD_Clear(void) {
 */
 
 void LCD_Write_Command(uchar Com) {
-  // while(LCD_Read_State());
-  // 判断LCD是否处于繁忙状态，如否就往LCD写指令
+  // while(lcd_read_state());
   Delay_ms(10);
   //	unsigned int Read_Dat = 0; //BJ
 
@@ -88,7 +90,6 @@ void LCD_Write_Command(uchar Com) {
 }
 
 void LCD_Write_Data(uchar dat) {
-  // while(LCD_Read_State());	//判断LCD是否处于繁忙状态，如否就往LCD写指令
   Delay_ms(1);
 
   HAL_GPIO_WritePin(GPIOB, LCD_RS_Pin, GPIO_PIN_SET);   // LCD_RS = 1;
@@ -96,39 +97,21 @@ void LCD_Write_Data(uchar dat) {
   HAL_GPIO_WritePin(GPIOB, LCD_E_Pin, GPIO_PIN_SET);    // LCD_E_Pin = 1;
   // Delay_ms(1);
 
-  LCD_PORT = dat; // 把数据信息放在总线上
+  LCD_PORT = dat; // put data on the bus
 
   HAL_GPIO_WritePin(GPIOB, LCD_E_Pin, GPIO_PIN_RESET); // Set LCD_E = 0;
 
-  Delay_ms(1); // 延时tpw;
-}
-
-/*
-读数据：D0~D7:
-D7==1:LCD1602繁忙
-D7==0;LCD1602空闲
-
-*/
-
-uchar LCD_Read_State(void) // 判断繁忙函数
-{
-
-  uchar state = 0;
-
-  return state;
+  Delay_ms(1); // wait for tpw;
 }
 
 void LCD_Set_Position(uchar x, uchar y) {
   if (y == 0) // 第一行开始显示
   {
     LCD_Write_Command(0x80 + x);
-  }
-
-  else if (y == 1) // 第二行开始显示
+  } else if (y == 1) // 第二行开始显示
   {
     LCD_Write_Command(0xc0 + x);
-  } else
-    ;
+  }
 }
 
 void LCD_Display_Char(uchar Char, uchar x, uchar y) // 显示字符ASCII码

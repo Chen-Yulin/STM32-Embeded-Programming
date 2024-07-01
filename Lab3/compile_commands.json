@@ -18,13 +18,13 @@
       "-ffunction-sections",
       "-g",
       "-gdwarf-2",
-      "-Wa,-a,-ad,-alms=build/main.lst",
+      "-Wa,-a,-ad,-alms=build/lcd1602.lst",
       "-o",
-      "build/main.o",
-      "Core/Src/main.c"
+      "build/lcd1602.o",
+      "Core/Src/lcd1602.c"
     ],
     "directory": "/home/cyl/373Lab/Lab3",
-    "file": "/home/cyl/373Lab/Lab3/Core/Src/main.c",
-    "output": "/home/cyl/373Lab/Lab3/build/main.o"
+    "file": "/home/cyl/373Lab/Lab3/Core/Src/lcd1602.c",
+    "output": "/home/cyl/373Lab/Lab3/build/lcd1602.o"
   }
 ]
