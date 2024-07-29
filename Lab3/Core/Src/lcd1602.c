@@ -80,6 +80,7 @@ void LCD_Write_Command(uchar Com) {
   Delay_ms(1);
 
   LCD_PORT = Com;
+  Delay_ms(1);
 
   HAL_GPIO_WritePin(GPIOB, LCD_E_Pin, GPIO_PIN_RESET); // LCD_E_Pin =0;
   Delay_ms(1);                                         // 延时tpw;
@@ -95,9 +96,10 @@ void LCD_Write_Data(uchar dat) {
   HAL_GPIO_WritePin(GPIOB, LCD_RS_Pin, GPIO_PIN_SET);   // LCD_RS = 1;
   HAL_GPIO_WritePin(GPIOB, LCD_RW_Pin, GPIO_PIN_RESET); //	LCD_RW = 0;
   HAL_GPIO_WritePin(GPIOB, LCD_E_Pin, GPIO_PIN_SET);    // LCD_E_Pin = 1;
-  // Delay_ms(1);
+  Delay_ms(1);
 
   LCD_PORT = dat; // put data on the bus
+  Delay_ms(1);
 
   HAL_GPIO_WritePin(GPIOB, LCD_E_Pin, GPIO_PIN_RESET); // Set LCD_E = 0;
 
